@@ -1,0 +1,28 @@
+{
+  "name": "nbcrypto",
+  "version": "1.0.0",
+  "description": "Crypto lookup for noisebridge",
+  "main": "crypto.js",
+  "scripts": {
+    "test": "test",
+    "run": "run-func crypto.js handler"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tylermaran/nbcrypto.git"
+  },
+  "keywords": [
+    "crypt",
+    "noisebridge"
+  ],
+  "author": "themanmaran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tylermaran/nbcrypto/issues"
+  },
+  "homepage": "https://github.com/tylermaran/nbcrypto#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.0",
+    "run-func": "^1.0.2"
+  }
+}
