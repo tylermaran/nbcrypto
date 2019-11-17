@@ -1,0 +1,42 @@
+{
+  "name": "react_ui",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "react": "^16.10.1",
+    "react-bootstrap": "^1.0.0-beta.14",
+    "react-dom": "^16.10.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.1.2"
+  },
+  "scripts": {
+    "dev": "react-scripts start",
+    "start": "node server.js",
+    "build": "react-scripts build",
+    "postbuild": "mv build ../",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": true
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+p {
+    font-size: 1rem;
+}
+
+a {
+    color: inherit;
+}
+a:hover {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+ul {
+    list-style-type: square;
+}
+
+@media only screen and (max-width: 600px) {
+    p {
+        font-size: 0.9rem;
+    }
+}
+
+@media only screen and (min-width: 601px) {
+}
+
+@media only screen and (min-width: 750px) {
+}
+
+@media only screen and (min-width: 850px) {
+}

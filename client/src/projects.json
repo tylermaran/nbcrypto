@@ -1,0 +1,184 @@
+[
+    {
+        "name": "Clubfinder",
+        "url": "https://www.clubfinder.us/",
+        "git_link": "null",
+        "private": "true",
+        "desktop_image": "https://tylermaran.s3.us-east-2.amazonaws.com/club_map.png",
+        "mobile_image": "https://tylermaran.s3.us-east-2.amazonaws.com/club_mobile.png",
+        "show_phone": "true",
+        "detail_image": "https://tylermaran.s3.us-east-2.amazonaws.com/club_detail.PNG",
+        "description": {
+            "body": "Clubfinder.us is a listing platform designed to match users with Private Clubs and Golf Courses that meet their needs. I worked as the primary developer for ClubFinder ~6 months. Deployed and managed in AWS.",
+            "sub_points": [
+                "Representing 400+ clubs in California",
+                "Custom Content management system allows Club Managers to create, customize, and maintain their profiles.",
+                "Email server with automated notifications allows Club Managers to communicate to prospective customers through the application."
+            ]
+        },
+        "detail": {
+            "body": "React front end with Node/Express REST API. Deployed and Managed in AWS. Using S3 as data storage (~2000 images).",
+            "sub_points": [
+                "Horizontally scaled and load balanced with Nginx",
+                "Managing user data with BCrypt, and JWT validation.",
+                "Automated image crushing improves load times"
+            ]
+        },
+        "detail_link_title": "extra info here!",
+        "detail_link": "www.google.com"
+    },
+    {
+        "name": "OutSpoke.io",
+        "url": "https://outspoke.io/",
+        "git_link": "null",
+        "private": "true",
+        "desktop_image": "https://tylermaran.s3.us-east-2.amazonaws.com/outspoke.png",
+        "mobile_image": "https://tylermaran.s3.us-east-2.amazonaws.com/outspoke_mobile.png",
+        "show_phone": "true",
+        "detail_image": "https://tylermaran.s3.us-east-2.amazonaws.com/outspoke.png",
+        "description": {
+            "body": "Outspoke.io provides both buyers and sellers with a platform to interact and list their products. I worked with OutSpoke.io for 2 months developing the product listing service and transition to a Node/React environment.",
+            "sub_points": [
+                "React/Node development connected to existing PHP API",
+                "Developed search platform to query, filter, and display products.",
+                "User session management (product platform is members only)"
+            ]
+        },
+        "detail": {
+            "body": "Worked alongside existing team to migrate from PHP Static Server",
+            "sub_points": [
+                "Deployed with AWS Elastic Beanstalk",
+                "Session management with JWT",
+                "Google API for location based searching"
+            ]
+        },
+        "detail_link_title": "extra info here!",
+        "detail_link": "www.google.com"
+    },
+    {
+        "name": "CADL (CAD Library)",
+        "url": "http://cadl.io/",
+        "git_link": "https://github.com/tylermaran/cadl",
+        "private": "false",
+        "desktop_image": "https://tylermaran.s3.us-east-2.amazonaws.com/cadl.png",
+        "mobile_image": "https://tylermaran.s3.us-east-2.amazonaws.com/cadl.png",
+        "show_phone": "true",
+        "detail_image": "https://tylermaran.s3.us-east-2.amazonaws.com/cadl.png",
+        "description": {
+            "body": "Designed and built CADL as an open source library for CAD files. Users can style and edit their 3D models in browser, create instructions, and share their designs.",
+            "sub_points": [
+                "CADL uses three.js and a custom built file switcher to interpret and render a large variety of filetypes.",
+                "Currently supporting: .STL, .SVG, GCODE, .FBX, .DXF",
+                "GUI allows users to scale/position/color models, as well as lighting, skybox, and environment effects."
+            ]
+        },
+        "detail": {
+            "body": "",
+            "sub_points": [
+                "Files are stored in AWS S3, and S3 Glacier to minimize storage costs on large / seldomly accessed files.",
+                "Enginx Load balancer",
+                "Currently supporting: .STL, .SVG, GCODE, .FBX, .DXF"
+            ]
+        },
+        "detail_link_title": "Try out the file viewer here:",
+        "detail_link": "www.google.com"
+    },
+    {
+        "name": "iZac: Robotic Bartender",
+        "url": "https://tylermaran.github.io/izac/",
+        "git_link": "https://github.com/tylermaran/izac",
+        "private": "false",
+        "desktop_image": "https://tylermaran.s3.us-east-2.amazonaws.com/izac_front.png",
+        "mobile_image": "https://tylermaran.s3.us-east-2.amazonaws.com/izac_front.png",
+        "show_phone": "true",
+        "detail_image": "https://tylermaran.s3.us-east-2.amazonaws.com/izac_pour.png",
+        "description": {
+            "body": "A joint project for the annual SF Robitic bartender competition, iZac is a fully functional bar with ",
+            "sub_points": [
+                "190 drink options (although some of those would be terrible)",
+                "React UI on Raspberry Pi Toucscreen",
+                "Using combination of Air Pressure and peristaltic pumps to control drink level."
+            ]
+        },
+        "detail": {
+            "body": "React / Node / Python running on a Rasberry Pi 4. The react UI calls a Node API which handles bottle stats, and calls a Python microservice to control pins.",
+            "sub_points": [
+                "PostgreSQL database using sequelize ORM",
+                "Tracks bottle fill level and adjusts pressure to equalize pour volumes",
+                "Lots of welding and woodworking as well"
+            ]
+        },
+        "detail_link_title": "extra info here!",
+        "detail_link": "www.google.com"
+    },
+    {
+        "name": "Dwayne Wilson Trucking",
+        "url": "http://dwaynewilsontrucking.com/",
+        "git_link": "https://github.com/tylermaran/dwtrucking",
+        "private": "false",
+        "desktop_image": "https://tylermaran.s3.us-east-2.amazonaws.com/dwayne.png",
+        "mobile_image": "https://tylermaran.s3.us-east-2.amazonaws.com/dwayne_mobile.png",
+        "show_phone": "true",
+        "detail_image": "https://tylermaran.s3.us-east-2.amazonaws.com/dwayne_detail.PNG",
+        "description": {
+            "body": "Landing page for Trucking / Demolition client. This is serverless application.",
+            "sub_points": [
+                "Optimized SEO and location based advertisements through Google Ads",
+                "Uses Mailgun API to manage outgoing mail."
+            ]
+        },
+        "detail": {
+            "body": "",
+            "sub_points": []
+        },
+        "detail_link_title": "extra info here!",
+        "detail_link": "www.google.com"
+    },
+    {
+        "name": "Portfolio Page",
+        "url": "/recursion",
+        "git_link": "https://github.com/tylermaran/tylermaran",
+        "private": "false",
+        "desktop_image": "https://tylermaran.s3.us-east-2.amazonaws.com/tyler_desktop.png?versionId=oR1RAtQOJ9c7cI_IufWgRsAAxS2Dvug0",
+        "mobile_image": "https://tylermaran.s3.us-east-2.amazonaws.com/tyler_mobile.png",
+        "show_phone": "true",
+        "detail_image": "https://tylermaran.s3.us-east-2.amazonaws.com/tyler_desktop.png",
+        "description": {
+            "body": "My portfolio page. You know. The page that you are on now.",
+            "sub_points": [
+                "Made to be easy to fork and provide your own content. Check out the repo for instructions on cloning this page.",
+                "Page detail is populated via a single JSON document that can be quickly edited to add your own projects."
+            ]
+        },
+        "detail": {
+            "body": "React Front end with a Node/Express server. Project details and images are all mapped from a central JSON file, making it easy to edit or upload new projects.",
+            "sub_points": [
+                "AWS Deployed using Nginx Load balancer",
+                "S3 Image storage",
+                "Minimal dependencies (other than react) and vanilla CSS"
+            ]
+        },
+        "detail_link_title": "extra info here!",
+        "detail_link": "www.google.com"
+    },
+    {
+        "name": "PubCrawlr",
+        "url": "https://tylermaran.github.io/PubCrawlerHERE/",
+        "git_link": "https://github.com/tylermaran/PubCrawlerHERE",
+        "private": "true",
+        "desktop_image": "https://tylermaran.s3.us-east-2.amazonaws.com/pubcrawlr_desktop.png",
+        "mobile_image": "https://tylermaran.s3.us-east-2.amazonaws.com/pubcrawlr_mobile.png",
+        "show_phone": "true",
+        "detail_image": "https://tylermaran.s3.us-east-2.amazonaws.com/pubcrawlr_desktop.png",
+        "description": {
+            "body": "Plotting your optimal PubCrawl using Google GeoLocation API and Yelp API",
+            "sub_points": ["24 Hour Hackathon project"]
+        },
+        "detail": {
+            "body": "Future Plans: refactor this page into a react native application to take advantage of GeoFencing capabilities",
+            "sub_points": []
+        },
+        "detail_link_title": "extra info here!",
+        "detail_link": "www.google.com"
+    }
+]
