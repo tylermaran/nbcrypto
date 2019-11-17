@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import NavBar from '../components/NavBar';
 import About from '../components/About';
 import RecentTrans from '../components/RecentTrans';
+import Chart from '../components/Chart';
 
 // Importing Styling
 import './Landing.css';
@@ -133,7 +134,7 @@ class Landing extends Component {
 						<div className="sub_title">Overview:</div> 
 						<br />
 						<br/>
-						<p>A really pretty graph will go here someday</p>
+						<Chart/>
 					</div>
 
 					<div className="current_balance">

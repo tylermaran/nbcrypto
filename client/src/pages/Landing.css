@@ -14,12 +14,12 @@
 }
 
 .graph {
-	height: 400px;
+	min-height: 400px;
+	height: auto;
 	width: 65%;
 	margin: 20px 0 0 17.5%;
 	background-color: rgb(35, 35, 35);
 	color: white;
-	padding: 30px;
 	padding: 20px;
 }
 
