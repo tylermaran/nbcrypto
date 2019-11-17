@@ -1,5 +1,10 @@
 .about {
     color: white;
+    text-align: left;
     font-family: 'Courier New', Courier, monospace;
-    clear: both;
+    width: 65%;
+    margin: 0 0 0 17.5%;
+    background-color: rgb(35, 35, 35);
+    padding: 20px;
+    height: 100px;
 }
