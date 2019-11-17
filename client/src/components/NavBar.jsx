@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import './NavBar.css';
 
 const NavBar = props => {
+	const [page, setPage ] = useState('Dashboard');
+
 	return (
 		<div className="NavBar">
 			<div className="nav_item">

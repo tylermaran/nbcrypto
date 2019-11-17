@@ -5,9 +5,6 @@ import Chart from 'chart.js';
 import './Chart.css';
 
 class LineGraph extends Component {
-    constructor(props) {
-        super(props)
-    }
     
 	chartRef = React.createRef();
 

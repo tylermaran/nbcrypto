@@ -1,0 +1,15 @@
+.Address {
+}
+
+.address_container {
+	color: white;
+    width: 50%;
+    margin: 2.5% 0 0 25%;
+    padding: 20px;
+	background-color: rgb(35, 35, 35);
+}
+
+#BTC_CANVAS, #ETH_CANVAS {
+    margin: 0 0 0 50%;
+    transform: translate(-50%, 0);
+}
