@@ -120,7 +120,7 @@ class Landing extends Component {
 
 		setInterval(() => {
 			refresh_values();
-		}, 6000);
+		}, 60000);
 	}
 
 	render() {
@@ -134,7 +134,7 @@ class Landing extends Component {
 						<div className="sub_title">Overview:</div> 
 						<br />
 						<br/>
-						<Chart/>
+						<Chart data={[0.25, 0.26, 0.29, 0.45, 0.52, 0.89, 0.99, 0.85]}/>
 					</div>
 
 					<div className="current_balance">

@@ -5,9 +5,14 @@ import Chart from 'chart.js';
 import './Chart.css';
 
 class LineGraph extends Component {
+    constructor(props) {
+        super(props)
+    }
+    
 	chartRef = React.createRef();
 
 	componentDidMount() {
+        console.log(this.props)
 		const myChartRef = this.chartRef.current.getContext('2d');
 		Chart.defaults.global.elements.line.tension = 0;
 
@@ -19,7 +24,7 @@ class LineGraph extends Component {
 				datasets: [
 					{
 						label: 'ETH',
-                        data: [0.25, 0.26, 0.29, 0.45, 0.52, 0.89, 0.99, 0.85],
+                        data: this.props.data,
                         borderColor: "#98B9AB"
 
 					},
