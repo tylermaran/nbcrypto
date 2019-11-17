@@ -7,7 +7,12 @@ import './About.css';
 const About = props => {
     return (
         <div className="about">
-            This project is open to community improvement. Check out the repo at <a href="https://github.com/tylermaran/nbcrypto">github.com/tylermaran/nbcrypto</a>
+            <div className="sub_title">
+                About:
+            </div>
+            <br/>
+            <br/>
+            <p>This project is open to community improvement. Check out the repo at <a href="https://github.com/tylermaran/nbcrypto">github.com/tylermaran/nbcrypto</a></p>
         </div>
     );
 };

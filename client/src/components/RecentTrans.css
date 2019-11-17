@@ -1,12 +1,11 @@
-.about {
+.RecentTrans {
     color: white;
-    text-align: left;
-    font-family: 'Courier New', Courier, monospace;
+    height: auto;
+    min-height: 200px;
     width: 65%;
-    margin: 0 0 0 17.5%;
+    margin: 0 0 2.5% 17.5%;
     background-color: rgb(35, 35, 35);
     padding: 20px;
-    height: auto;
 }
 
 .sub_title {

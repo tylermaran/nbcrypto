@@ -20,7 +20,13 @@
 	background-color: rgb(35, 35, 35);
 	color: white;
 	padding: 30px;
-	text-align: center;
+	padding: 20px;
+}
+
+
+.sub_title {
+    display: inline;
+    border-bottom: 1px solid white;
 }
 
 .eth, .btc {

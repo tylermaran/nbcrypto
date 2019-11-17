@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 // Importing Components
 import NavBar from '../components/NavBar';
 import About from '../components/About';
+import RecentTrans from '../components/RecentTrans';
 
 // Importing Styling
 import './Landing.css';
@@ -32,98 +33,108 @@ class Landing extends Component {
 	componentDidMount() {
 		console.log('Fetch data');
 		// BTC Value
-		fetch(
-			'https://cors-anywhere.herokuapp.com/' +
-				this.state.BTC_URL +
-				this.state.BTC,
-			{
+		const refresh_values = () => {
+			fetch(
+				'https://cors-anywhere.herokuapp.com/' +
+					this.state.BTC_URL +
+					this.state.BTC,
+				{
+					mode: 'cors', // no-cors, *cors, same-origin
+				}
+			)
+				.then(response => {
+					return response.json();
+				})
+				.then(data => {
+					console.log(data);
+					let result = parseFloat(data.final_balance) / 100000000;
+					this.setState({
+						BTC_BALANCE: result,
+					});
+				})
+				.catch(err => {
+					console.log('Error Fetching BTC');
+					console.log(err);
+				});
+
+			// ETH Balance
+			fetch(this.state.ETH_URL + this.state.ETH, {
 				mode: 'cors', // no-cors, *cors, same-origin
-			}
-		)
-			.then(response => {
-				return response.json();
 			})
-			.then(data => {
-				console.log(data);
-				let result = parseFloat(data.final_balance) / 100000000;
-				this.setState({
-					BTC_BALANCE: result,
+				.then(response => {
+					return response.json();
+				})
+				.then(data => {
+					console.log(data);
+					let result =
+						parseFloat(data.final_balance) / 1000000000000000000;
+					this.setState({
+						ETH_BALANCE: result,
+					});
+				})
+				.catch(err => {
+					console.log('Error Fetching ETH');
+					console.log(err);
 				});
-			})
-			.catch(err => {
-				console.log('Error Fetching BTC');
-				console.log(err);
-			});
 
-		// ETH Balance
-		fetch(this.state.ETH_URL + this.state.ETH, {
-			mode: 'cors', // no-cors, *cors, same-origin
-		})
-			.then(response => {
-				return response.json();
+			// ETH Exchange Rate
+			fetch(this.state.ETH_EXCHANGE_URL, {
+				mode: 'cors', // no-cors, *cors, same-origin
 			})
-			.then(data => {
-				console.log(data);
-				let result =
-					parseFloat(data.final_balance) / 1000000000000000000;
-				this.setState({
-					ETH_BALANCE: result,
+				.then(response => {
+					return response.json();
+				})
+				.then(data => {
+					console.log(data);
+					let result = parseFloat(data.result.ethusd).toFixed(2);
+					this.setState({
+						ETH_EXCHANGE: result,
+					});
+				})
+				.catch(err => {
+					console.log('Error Fetching ETH exchange rate');
+					console.log(err);
 				});
-			})
-			.catch(err => {
-				console.log('Error Fetching ETH');
-				console.log(err);
-			});
 
-		// ETH Exchange Rate
-		fetch(this.state.ETH_EXCHANGE_URL, {
-			mode: 'cors', // no-cors, *cors, same-origin
-		})
-			.then(response => {
-				return response.json();
+			// BTC Exchange Rate
+			fetch(this.state.BTC_EXCHANGE_URL, {
+				mode: 'cors', // no-cors, *cors, same-origin
 			})
-			.then(data => {
-				console.log(data);
-				let result = parseFloat(data.result.ethusd).toFixed(2);
-				this.setState({
-					ETH_EXCHANGE: result,
+				.then(response => {
+					return response.json();
+				})
+				.then(data => {
+					console.log(data);
+					let result = data.bpi.USD.rate_float.toFixed(2);
+					this.setState({
+						BTC_EXCHANGE: result,
+					});
+				})
+				.catch(err => {
+					console.log('Error Fetching BTC exchange rate');
+					console.log(err);
 				});
-			})
-			.catch(err => {
-				console.log('Error Fetching ETH exchange rate');
-				console.log(err);
-			});
+		};
+		refresh_values();
 
-		// BTC Exchange Rate
-		fetch(this.state.BTC_EXCHANGE_URL, {
-			mode: 'cors', // no-cors, *cors, same-origin
-		})
-			.then(response => {
-				return response.json();
-			})
-			.then(data => {
-				console.log(data);
-				let result = data.bpi.USD.rate_float.toFixed(2);
-				this.setState({
-					BTC_EXCHANGE: result,
-				});
-			})
-			.catch(err => {
-				console.log('Error Fetching BTC exchange rate');
-				console.log(err);
-			});
+		setInterval(() => {
+			refresh_values();
+		}, 6000);
 	}
 
 	render() {
 		return (
 			<div className="landing">
 				<div className="grid">
-					<NavBar/>
+					<NavBar />
 					<h1 className="main_title">NoiseBridge Crypto</h1>
 
-                    <div className="graph">
-                        A really pretty graph will go here someday
-                    </div>
+					<div className="graph">
+						<div className="sub_title">Overview:</div> 
+						<br />
+						<br/>
+						<p>A really pretty graph will go here someday</p>
+					</div>
 
 					<div className="current_balance">
 						<div className="eth">
@@ -131,10 +142,10 @@ class Landing extends Component {
 								ETH Balance: {this.state.ETH_BALANCE}{' '}
 							</div>
 							<div className="exchange_rate">
-								ETH Exchange Rate: {this.state.ETH_EXCHANGE}
+								ETH Exchange Rate: ${this.state.ETH_EXCHANGE}
 							</div>
 							<div className="usd_balance">
-								ETH USD: $
+								ETH (USD): $
 								{(
 									this.state.ETH_BALANCE *
 									this.state.ETH_EXCHANGE
@@ -146,10 +157,10 @@ class Landing extends Component {
 								BTC Balance: {this.state.BTC_BALANCE}
 							</div>
 							<div className="exchange_rate">
-								BTC Exchange Rate: {this.state.BTC_EXCHANGE}
+								BTC Exchange Rate: ${this.state.BTC_EXCHANGE}
 							</div>
 							<div className="usd_balance">
-								BTC USD: $
+								BTC (USD): $
 								{(
 									this.state.BTC_BALANCE *
 									this.state.BTC_EXCHANGE
@@ -157,8 +168,8 @@ class Landing extends Component {
 							</div>
 						</div>
 					</div>
-					<About/>
-
+					<RecentTrans />
+					<About />
 				</div>
 			</div>
 		);
