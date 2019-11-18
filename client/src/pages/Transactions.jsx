@@ -13,7 +13,7 @@ const Transactions = props => {
 		<div className="Transactions">
 			<div className="grid">
 				<NavBar page="Transactions" />
-				<RecentTrans/>
+				<RecentTrans transactions={[1,3,45,6,3,2,5,6,3,2,2]} />
 			</div>
 		</div>
 	);

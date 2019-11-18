@@ -10,12 +10,6 @@
             "coin": "BTC",
             "address": "37VhBhZGbmFAgHZJunHVc6HNRBbtFEUbCf",
             "note": "Bitcoin Hardware Wallet"
-        },
-        {
-            "coin": "BTC",
-            "address": "1NrbWrxkdPuyPfFtc1W4AKNtkQMyXwAAJV",
-            "note": "Bitcoin Coinbase Account (cold-storage)"
         }
     ]
-
 }

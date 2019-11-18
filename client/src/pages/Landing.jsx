@@ -16,13 +16,20 @@ import { BTC_EXCHANGE, ETH_EXCHANGE, GET_BTC, GET_ETH } from '../api';
 // Importing Wallets
 import wallet from '../wallets.json';
 
+// Coinbase account: ignoring this one for now
+// {
+// 	"coin": "BTC",
+// 	"address": "1NrbWrxkdPuyPfFtc1W4AKNtkQMyXwAAJV",
+// 	"note": "Bitcoin Coinbase Account (cold-storage)"
+// }
+
 class Landing extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			BTC: [],
 			ETH: [],
-			BTC_URL: 'https://blockchain.info/rawaddr/',
+			BTC_URL: 'https://api.blockcypher.com/v1/btc/main/addrs/',
 			ETH_URL: 'https://api.blockcypher.com/v1/eth/main/addrs/',
 			BTC_EXCHANGE_URL:
 				'https://api.coindesk.com/v1/bpi/currentprice.json',
@@ -34,6 +41,7 @@ class Landing extends Component {
 			ETH_BALANCE: 0,
 			BTC_USD: 0,
 			ETH_USD: 0,
+			BTC_TRANSACTIONS: [],
 			TRANSACTIONS: [
 				{
 					coin: 'ETH',
@@ -61,8 +69,10 @@ class Landing extends Component {
 		for (let i = 0; i < this.state.BTC.length; i++) {
 			GET_BTC(this.state.BTC_URL, this.state.BTC[i]).then(response => {
 				console.log('BTC Balance : ' + response);
+				console.log(response.transactions)
 				this.setState({
-					BTC_BALANCE: response,
+					BTC_BALANCE: response.balance,
+					BTC_TRANSACTIONS: response.transactions
 				});
 			});
 		}
@@ -170,7 +180,7 @@ class Landing extends Component {
 							</div>
 						</div>
 					</div>
-					<RecentTrans />
+					<RecentTrans transactions={this.state.BTC_TRANSACTIONS} />
 					<About />
 				</div>
 			</div>

@@ -1,24 +1,54 @@
 .RecentTrans {
-    color: white;
-    height: auto;
-    min-height: 200px;
-    width: 65%;
-    margin: 0 0 2.5% 17.5%;
-    background-color: rgb(35, 35, 35);
-    padding: 20px;
+	color: white;
+	height: auto;
+	min-height: 200px;
+	width: 65%;
+	margin: 0 0 2.5% 17.5%;
+	background-color: rgb(35, 35, 35);
+	padding: 20px;
+}
+
+.transaction_div {
+	border: 1px solid grey;
+	padding: 10px;
+	margin: 10px 5px 0 5px;
 }
 
 .sub_title {
-    display: inline;
-    border-bottom: 1px solid white;
+	display: inline;
+	border-bottom: 1px solid white;
 }
 
+.transaction_coin,
+.transaction_time {
+	display: inline-block;
+	width: 50%;
+	text-align: left;
+}
+.transaction_value,
+.transaction_usd {
+	display: inline-block;
+	width: 50%;
+	text-align: right;
+}
+
+.view_all {
+    color: rgb(129, 160, 255);
+    font-style: italic;
+    font-size: .85rem;
+    text-align: right;
+    margin: 20px 0 0 0;
+}
 
 @media only screen and (max-width: 600px) {
-	
 	.RecentTrans {
 		width: 95%;
 		margin: 10px 0 10px 2.5%;
 	}
 
+	.transaction_div {
+		padding: 5px;
+        margin: 10px 5px 0 5px;
+        font-size: .85rem;
+	}
 }
