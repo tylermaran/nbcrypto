@@ -13,3 +13,8 @@
     display: inline;
     border-bottom: 1px solid white;
 }
+
+#github_link {
+    color: rgb(129, 160, 255);
+    font-style: italic;
+}

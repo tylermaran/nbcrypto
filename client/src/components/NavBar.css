@@ -1,36 +1,39 @@
 .NavBar {
-    width: 100%;
-    overflow: hidden;
+	width: 100%;
+	overflow: hidden;
 }
 
 .nav_item {
-    width: auto;
-    width: 33%;
-    display: inline-block;
-    margin: 30px 0 10px 0 ;
+	width: auto;
+	width: 33%;
+	display: inline-block;
+	margin: 30px 0 10px 0;
 	font-weight: bold;
 	color: #cef0ff;
 	vertical-align: middle;
-	text-shadow: 2px 2px #0f2027, 2.1px 2.1px rgb(140, 140, 255), 4px 4px #0f2027, 4.1px 4.1px rgb(140, 140, 255);
+	text-shadow: 2px 2px #0f2027, 2.1px 2.1px rgb(140, 140, 255),
+		4px 4px #0f2027, 4.1px 4.1px rgb(140, 140, 255);
 	font-size: 1.25rem;
-    font-style: italic;
-    text-align: center;
+	font-style: italic;
+	text-align: center;
 }
 
 .nav_line {
-    width: 90%;
-    margin: 0 0 30px 5%;
-    border-bottom: 1px solid #cef0ff;
+	width: 90%;
+	margin: 0 0 30px 5%;
+	border-bottom: 1px solid #cef0ff;
 }
 
-
+.underline {
+	border-bottom: 1px solid #cef0ff;
+}
 
 @media only screen and (max-width: 600px) {
-   .nav_item {
-       width: 100%;
-       margin: 0px;
-       padding: 0;
-       font-size: 1rem;
-       text-align: right;
-   }
+	.nav_item {
+		width: 100%;
+		margin: 0px;
+		padding: 0;
+		font-size: 1rem;
+		text-align: right;
+	}
 }

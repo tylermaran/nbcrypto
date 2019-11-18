@@ -1,6 +1,3 @@
-.Address {
-}
-
 .address_container {
 	color: white;
     width: 50%;
@@ -9,7 +6,11 @@
 	background-color: rgb(35, 35, 35);
 }
 
-#BTC_CANVAS, #ETH_CANVAS {
+.address_canvas {
     margin: 0 0 0 50%;
     transform: translate(-50%, 0);
+}
+.address_note {
+    text-align: center;
+    margin: 10px 0 0 0;
 }

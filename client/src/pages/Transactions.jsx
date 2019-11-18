@@ -11,7 +11,7 @@ const Transactions = props => {
 	return (
 		<div className="Transactions">
 			<div className="grid">
-				<NavBar />
+				<NavBar page="Transactions" />
 				Transactions page
 			</div>
 		</div>

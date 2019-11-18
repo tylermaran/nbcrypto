@@ -11,8 +11,7 @@ const About = props => {
                 About:
             </div>
             <br/>
-            <br/>
-            <p>This project is open to community improvement. Check out the repo at <a href="https://github.com/tylermaran/nbcrypto">github.com/tylermaran/nbcrypto</a></p>
+            <p>This project is open to community improvement. Check out the repo at <a id="github_link" href="https://github.com/tylermaran/nbcrypto">github.com/tylermaran/nbcrypto</a></p>
         </div>
     );
 };

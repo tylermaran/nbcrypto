@@ -8,50 +8,60 @@ import NavBar from '../components/NavBar';
 // Importing Styles
 import './Address.css';
 
-class Address extends Component {
-	componentDidMount() {
-		// let canvas = React.findDOMNode(this.refs.eth).value;
+// Importing Wallets
+import wallets from '../wallets.json';
 
-		QRCode.toCanvas(
-			document.getElementById('ETH_CANVAS'),
-			'0x9b941d7ae9a9b4cdf0b821105ccb0feaf10a8de1',
+class Address extends Component {
+	constructor() {
+		super();
+		this.state = {
+			addresses: '',
+		};
+	}
+	componentDidMount() {
+		let temp = wallets.wallets.map(this.map_address);
+		this.setState(
 			{
-				scale: 10,
+				addresses: temp,
 			},
-			function(error) {
-				if (error) console.error(error);
-				console.log('success!');
-			}
-		);
-		QRCode.toCanvas(
-			document.getElementById('BTC_CANVAS'),
-			'37VhBhZGbmFAgHZJunHVc6HNRBbtFEUbCf',
-			{
-				scale: 10,
-			},
-			function(error) {
-				if (error) console.error(error);
-				console.log('success!');
+			() => {
+
+				for (let i = 0; i < wallets.wallets.length; i++) {
+					QRCode.toCanvas(
+						document.getElementById(wallets.wallets[i].address),
+						wallets.wallets[i].address,
+						{
+							scale: 10,
+						},
+						function(error) {
+							if (error) console.error(error);
+						}
+					);
+				}
 			}
 		);
 	}
+
+	map_address = address => {
+		return (
+			<div className="address_container" key={address.address}>
+				<div className="sub_title">{address.coin} Address:</div>
+				<p>{address.address}</p>
+				<canvas
+					className="address_canvas"
+					id={address.address}
+				></canvas>
+				<p className="address_note">{address.note}</p>
+			</div>
+		);
+	};
 
 	render() {
 		return (
 			<div className="Address">
 				<div className="grid">
-					<NavBar />
-
-					<div className="address_container">
-						<div className="sub_title">BTC Address:</div>
-						<p>37VhBhZGbmFAgHZJunHVc6HNRBbtFEUbCf</p>
-						<canvas id="BTC_CANVAS"></canvas>
-					</div>
-					<div className="address_container">
-						<div className="sub_title">ETH Address:</div>
-						<p>0x9b941d7ae9a9b4cdf0b821105ccb0feaf10a8de1</p>
-						<canvas id="ETH_CANVAS"></canvas>
-					</div>
+					<NavBar page="Address" />
+					{this.state.addresses}
 				</div>
 			</div>
 		);
