@@ -1,16 +1,48 @@
 .address_container {
 	color: white;
-    width: 50%;
-    margin: 2.5% 0 0 25%;
-    padding: 20px;
+	display: inline-block;
+	padding: 20px;
 	background-color: rgb(35, 35, 35);
 }
 
 .address_canvas {
-    margin: 0 0 0 50%;
-    transform: translate(-50%, 0);
+	margin: 0 0 0 50%;
+	transform: translate(-50%, 0);
 }
 .address_note {
-    text-align: center;
-    margin: 10px 0 0 0;
+	text-align: center;
+	margin: 10px 0 10px 0;
+	word-break: break-all;
+}
+
+@media only screen and (max-width: 650px) {
+	.address_container {
+		width: 95%;
+		margin: 2.5% 0 0 2.5%;
+		overflow: hidden;
+	}
+	.address_canvas {
+		height: 200px !important;	
+		width: 200px !important;	
+	}
+	.address_note {
+		font-size: 0.8rem;
+	}
+}
+
+@media only screen and (min-width: 651px) {
+	.address_container {
+		width: 80%;
+		margin: 2.5% 0 0 10%;
+	}
+}
+
+@media only screen and (min-width: 900px) {
+	.address_container {
+		width: 60%;
+		margin: 2.5% 0 0 20%;
+	}
+}
+
+@media only screen and (min-width: 1200px) {
 }

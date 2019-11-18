@@ -46,7 +46,7 @@ class Address extends Component {
 		return (
 			<div className="address_container" key={address.address}>
 				<div className="sub_title">{address.coin} Address:</div>
-				<p>{address.address}</p>
+				<p className="address_note">{address.address}</p>
 				<canvas
 					className="address_canvas"
 					id={address.address}

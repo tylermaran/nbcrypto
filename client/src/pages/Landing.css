@@ -1,12 +1,13 @@
 .main_title {
-    width: 100%;
+	width: 100%;
 	font-weight: bold;
 	color: #cef0ff;
 	vertical-align: middle;
-	text-shadow: 2px 2px #0f2027, 2.1px 2.1px rgb(140, 140, 255), 4px 4px #0f2027, 4.1px 4.1px rgb(140, 140, 255);
+	text-shadow: 2px 2px #0f2027, 2.1px 2.1px rgb(140, 140, 255),
+		4px 4px #0f2027, 4.1px 4.1px rgb(140, 140, 255);
 	font-size: 2rem;
-    font-style: italic;
-    text-align: center;
+	font-style: italic;
+	text-align: center;
 }
 
 .current_balance {
@@ -14,7 +15,6 @@
 }
 
 .graph {
-	min-height: 400px;
 	height: auto;
 	width: 65%;
 	margin: 20px 0 0 17.5%;
@@ -23,13 +23,13 @@
 	padding: 20px;
 }
 
-
 .sub_title {
-    display: inline;
-    border-bottom: 1px solid white;
+	display: inline;
+	border-bottom: 1px solid white;
 }
 
-.eth, .btc {
+.eth,
+.btc {
 	display: inline-block;
 	vertical-align: top;
 	width: 30%;
@@ -37,7 +37,7 @@
 	padding: 20px;
 	margin: 2.5%;
 	background-color: rgb(35, 35, 35);
-	font-size: .85rem;
+	font-size: 0.85rem;
 }
 
 .eth {
@@ -49,20 +49,27 @@
 	color: green;
 }
 
-
+.account_number {
+	color: rgb(129, 160, 255);
+	word-break: break-all;
+}
 
 @media only screen and (max-width: 600px) {
-    .main_title {
-        font-size: 1.25rem;
+	.main_title {
+		font-size: 1.25rem;
+
 	}
-	
-	.eth, .btc {
-		width: 80%;
-		margin: 10px 0 10px 10%;
+
+	.eth,
+	.btc {
+		width: 95%;
+		margin: 10px 0 10px 2.5%;
 	}
 
 	.graph {
 		width: 95%;
+		height: auto;
+		padding: 0;
 		margin: 0 0 0 2.5%;
 	}
 }

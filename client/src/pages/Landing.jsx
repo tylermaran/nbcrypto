@@ -1,5 +1,6 @@
 // Importing Dependencies
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 // Importing Components
 import NavBar from '../components/NavBar';
@@ -13,7 +14,7 @@ import './Landing.css';
 import { BTC_EXCHANGE, ETH_EXCHANGE, GET_BTC, GET_ETH } from '../api';
 
 // Importing Wallets
-import wallets from '../wallets.json';
+// import wallets from '../wallets.json';
 
 class Landing extends Component {
 	constructor(props) {
@@ -33,11 +34,13 @@ class Landing extends Component {
 			ETH_BALANCE: 0,
 			BTC_USD: 0,
 			ETH_USD: 0,
-			TRANSACTIONS: [{
-				'coin':"ETH",
-				'value': 0.025,
-				'date': '11/19/2019'
-			}]
+			TRANSACTIONS: [
+				{
+					coin: 'ETH',
+					value: 0.025,
+					date: '11/19/2019',
+				},
+			],
 		};
 	}
 	update = () => {
@@ -108,6 +111,9 @@ class Landing extends Component {
 
 					<div className="current_balance">
 						<div className="eth">
+							<div className="account_number">
+								<Link to="/address">{this.state.ETH}</Link>
+							</div>
 							<div className="balance">
 								ETH Balance: {this.state.ETH_BALANCE}{' '}
 							</div>
@@ -123,6 +129,9 @@ class Landing extends Component {
 							</div>
 						</div>
 						<div className="btc">
+							<div className="account_number">
+							<Link to="/address">{this.state.BTC}</Link>
+							</div>
 							<div className="raw_balance">
 								BTC Balance: {this.state.BTC_BALANCE}
 							</div>
