@@ -3,6 +3,7 @@ import React from 'react';
 
 // Importing Components
 import NavBar from '../components/NavBar';
+import RecentTrans from '../components/RecentTrans';
 
 // Importing Styles
 import './Transactions.css';
@@ -12,7 +13,7 @@ const Transactions = props => {
 		<div className="Transactions">
 			<div className="grid">
 				<NavBar page="Transactions" />
-				Transactions page
+				<RecentTrans/>
 			</div>
 		</div>
 	);

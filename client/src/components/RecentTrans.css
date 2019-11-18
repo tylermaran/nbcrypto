@@ -12,3 +12,13 @@
     display: inline;
     border-bottom: 1px solid white;
 }
+
+
+@media only screen and (max-width: 600px) {
+	
+	.RecentTrans {
+		width: 95%;
+		margin: 10px 0 10px 2.5%;
+	}
+
+}

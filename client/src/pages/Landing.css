@@ -57,9 +57,11 @@
 @media only screen and (max-width: 600px) {
 	.main_title {
 		font-size: 1.25rem;
-
+	
 	}
-
+	.sub_title {
+		margin: 0 0 0 10px;
+	}
 	.eth,
 	.btc {
 		width: 95%;
@@ -69,7 +71,7 @@
 	.graph {
 		width: 95%;
 		height: auto;
-		padding: 0;
+		padding: 5px 0 0 0;
 		margin: 0 0 0 2.5%;
 	}
 }

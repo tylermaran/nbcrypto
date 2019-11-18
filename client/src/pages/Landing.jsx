@@ -14,14 +14,14 @@ import './Landing.css';
 import { BTC_EXCHANGE, ETH_EXCHANGE, GET_BTC, GET_ETH } from '../api';
 
 // Importing Wallets
-// import wallets from '../wallets.json';
+import wallet from '../wallets.json';
 
 class Landing extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			BTC: '37VhBhZGbmFAgHZJunHVc6HNRBbtFEUbCf',
-			ETH: '0x9b941d7ae9a9b4cdf0b821105ccb0feaf10a8de1',
+			BTC: [],
+			ETH: [],
 			BTC_URL: 'https://blockchain.info/rawaddr/',
 			ETH_URL: 'https://api.blockcypher.com/v1/eth/main/addrs/',
 			BTC_EXCHANGE_URL:
@@ -58,12 +58,14 @@ class Landing extends Component {
 			});
 		});
 
-		GET_BTC(this.state.BTC_URL, this.state.BTC).then(response => {
-			console.log('BTC Balance : ' + response);
-			this.setState({
-				BTC_BALANCE: response,
+		for (let i = 0; i < this.state.BTC.length; i++) {
+			GET_BTC(this.state.BTC_URL, this.state.BTC[i]).then(response => {
+				console.log('BTC Balance : ' + response);
+				this.setState({
+					BTC_BALANCE: response,
+				});
 			});
-		});
+		}
 
 		GET_ETH(this.state.ETH_URL, this.state.ETH).then(response => {
 			console.log('ETH Balance : ' + response);
@@ -77,6 +79,27 @@ class Landing extends Component {
 	refresh = setInterval(this.update, 60000);
 
 	componentDidMount() {
+		for (let i = 0; i < wallet.wallets.length; i++) {
+			let temp;
+			switch (wallet.wallets[i].coin) {
+				case 'ETH':
+					temp = this.state.ETH;
+					temp.push(wallet.wallets[i].address);
+					this.setState({
+						ETH: temp,
+					});
+					break;
+				case 'BTC':
+					temp = this.state.BTC;
+					temp.push(wallet.wallets[i].address);
+					this.setState({
+						BTC: temp,
+					});
+					break;
+				default:
+					break;
+			}
+		}
 		this.update();
 	}
 
@@ -130,7 +153,7 @@ class Landing extends Component {
 						</div>
 						<div className="btc">
 							<div className="account_number">
-							<Link to="/address">{this.state.BTC}</Link>
+								<Link to="/address">{this.state.BTC}</Link>
 							</div>
 							<div className="raw_balance">
 								BTC Balance: {this.state.BTC_BALANCE}
