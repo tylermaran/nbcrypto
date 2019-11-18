@@ -1,19 +1,16 @@
 // BTC Exchange
-const BTC_EXCHANGE = () => {
+const BTC_EXCHANGE = url => {
 	console.log('Get BTC Exchange Rate');
 	// BTC Exchange Rate
-	fetch(this.state.BTC_EXCHANGE_URL, {
-		mode: 'cors', // no-cors, *cors, same-origin
+	return fetch(url, {
+		mode: 'cors', // no-cors, *cors, same-origin	 
 	})
 		.then(response => {
 			return response.json();
 		})
 		.then(data => {
-			console.log(data);
 			let result = data.bpi.USD.rate_float.toFixed(2);
-			this.setState({
-				BTC_EXCHANGE: result,
-			});
+			return result;
 		})
 		.catch(err => {
 			console.log('Error Fetching BTC exchange rate');
@@ -22,20 +19,17 @@ const BTC_EXCHANGE = () => {
 };
 
 // ETH Exchange
-const ETH_EXCHANGE = () => {
+const ETH_EXCHANGE = url => {
 	// ETH Exchange Rate
-	fetch(this.state.ETH_EXCHANGE_URL, {
+	return fetch(url, {
 		mode: 'cors', // no-cors, *cors, same-origin
 	})
 		.then(response => {
 			return response.json();
 		})
 		.then(data => {
-			console.log(data);
 			let result = parseFloat(data.result.ethusd).toFixed(2);
-			this.setState({
-				ETH_EXCHANGE: result,
-			});
+			return result;
 		})
 		.catch(err => {
 			console.log('Error Fetching ETH exchange rate');
@@ -44,24 +38,16 @@ const ETH_EXCHANGE = () => {
 };
 
 // GET BTC
-const GET_BTC = () => {
-	fetch(
-		'https://cors-anywhere.herokuapp.com/' +
-			this.state.BTC_URL +
-			this.state.BTC,
-		{
-			mode: 'cors', // no-cors, *cors, same-origin
-		}
-	)
+const GET_BTC = (url, address) => {
+	return fetch('https://cors-anywhere.herokuapp.com/' + url + address, {
+		mode: 'cors', // no-cors, *cors, same-origin
+	})
 		.then(response => {
 			return response.json();
 		})
 		.then(data => {
-			console.log(data);
 			let result = parseFloat(data.final_balance) / 100000000;
-			this.setState({
-				BTC_BALANCE: result,
-			});
+			return result;
 		})
 		.catch(err => {
 			console.log('Error Fetching BTC');
@@ -70,19 +56,16 @@ const GET_BTC = () => {
 };
 
 // GET ETH
-const GET_ETH = () => {
-	fetch(this.state.ETH_URL + this.state.ETH, {
+const GET_ETH = (url, address) => {
+	return fetch(url + address, {
 		mode: 'cors', // no-cors, *cors, same-origin
 	})
 		.then(response => {
 			return response.json();
 		})
 		.then(data => {
-			console.log(data);
 			let result = parseFloat(data.final_balance) / 1000000000000000000;
-			this.setState({
-				ETH_BALANCE: result,
-			});
+			return result;
 		})
 		.catch(err => {
 			console.log('Error Fetching ETH');

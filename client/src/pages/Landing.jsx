@@ -10,7 +10,7 @@ import Chart from '../components/Chart';
 // Importing Styling
 import './Landing.css';
 
-import {BTC_EXCHANGE, ETH_EXCHANGE, GET_BTC, GET_ETH} from '../api';
+import { BTC_EXCHANGE, ETH_EXCHANGE, GET_BTC, GET_ETH } from '../api';
 
 // Importing Wallets
 import wallets from '../wallets.json';
@@ -33,98 +33,47 @@ class Landing extends Component {
 			ETH_BALANCE: 0,
 			BTC_USD: 0,
 			ETH_USD: 0,
+			TRANSACTIONS: [{
+				'coin':"ETH",
+				'value': 0.025,
+				'date': '11/19/2019'
+			}]
 		};
 	}
 	update = () => {
-		BTC_EXCHANGE();
-
-		fetch(
-			'https://cors-anywhere.herokuapp.com/' +
-				this.state.BTC_URL +
-				this.state.BTC,
-			{
-				mode: 'cors', // no-cors, *cors, same-origin
-			}
-		)
-			.then(response => {
-				return response.json();
-			})
-			.then(data => {
-				console.log(data);
-				let result = parseFloat(data.final_balance) / 100000000;
-				this.setState({
-					BTC_BALANCE: result,
-				});
-			})
-			.catch(err => {
-				console.log('Error Fetching BTC');
-				console.log(err);
+		BTC_EXCHANGE(this.state.BTC_EXCHANGE_URL).then(response => {
+			console.log('Exchange rate : ' + response);
+			this.setState({
+				BTC_EXCHANGE: response,
 			});
+		});
 
-		// ETH Balance
-		fetch(this.state.ETH_URL + this.state.ETH, {
-			mode: 'cors', // no-cors, *cors, same-origin
-		})
-			.then(response => {
-				return response.json();
-			})
-			.then(data => {
-				console.log(data);
-				let result =
-					parseFloat(data.final_balance) / 1000000000000000000;
-				this.setState({
-					ETH_BALANCE: result,
-				});
-			})
-			.catch(err => {
-				console.log('Error Fetching ETH');
-				console.log(err);
+		ETH_EXCHANGE(this.state.ETH_EXCHANGE_URL).then(response => {
+			console.log('ETH Exchange rate : ' + response);
+			this.setState({
+				ETH_EXCHANGE: response,
 			});
+		});
 
-		// ETH Exchange Rate
-		fetch(this.state.ETH_EXCHANGE_URL, {
-			mode: 'cors', // no-cors, *cors, same-origin
-		})
-			.then(response => {
-				return response.json();
-			})
-			.then(data => {
-				console.log(data);
-				let result = parseFloat(data.result.ethusd).toFixed(2);
-				this.setState({
-					ETH_EXCHANGE: result,
-				});
-			})
-			.catch(err => {
-				console.log('Error Fetching ETH exchange rate');
-				console.log(err);
+		GET_BTC(this.state.BTC_URL, this.state.BTC).then(response => {
+			console.log('BTC Balance : ' + response);
+			this.setState({
+				BTC_BALANCE: response,
 			});
+		});
 
-		// BTC Exchange Rate
-		fetch(this.state.BTC_EXCHANGE_URL, {
-			mode: 'cors', // no-cors, *cors, same-origin
-		})
-			.then(response => {
-				return response.json();
-			})
-			.then(data => {
-				console.log(data);
-				let result = data.bpi.USD.rate_float.toFixed(2);
-				this.setState({
-					BTC_EXCHANGE: result,
-				});
-			})
-			.catch(err => {
-				console.log('Error Fetching BTC exchange rate');
-				console.log(err);
+		GET_ETH(this.state.ETH_URL, this.state.ETH).then(response => {
+			console.log('ETH Balance : ' + response);
+			this.setState({
+				ETH_BALANCE: response,
 			});
+		});
 	};
+
+	// Update the balance every minute
 	refresh = setInterval(this.update, 60000);
 
 	componentDidMount() {
-		console.log(wallets);
-		console.log('Fetch data');
-
 		this.update();
 	}
 
