@@ -108,7 +108,7 @@ const GET_ETH = (address) => {
 			return result;
 		})
 		.catch(err => {
-			console.log('Error Fetching ETH');
+			console.log('Error Fetching ETH balance');
 			console.log(err);
 		});
 };

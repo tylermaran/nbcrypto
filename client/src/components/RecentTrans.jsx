@@ -16,17 +16,6 @@ class Transactions extends Component {
 	map_transactions = transactions => {
 		let BTC_EXCHANGE = this.props.BTC_EXCHANGE;
 		let ETH_EXCHANGE = this.props.ETH_EXCHANGE;
-		// let date = new Date(transactions.time);
-		// let formatted_date =
-		// 	date.getMonth() +
-		// 	'/' +
-		// 	date.getDay() +
-		// 	'/' +
-		// 	date.getFullYear() +
-		// 	' at ' +
-		// 	date.getHours() +
-		// 	':' +
-		// 	date.getMinutes();
 
 		let formatted_date = transactions.time
 			.substring(0, transactions.time.length - 1)

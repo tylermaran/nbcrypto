@@ -35,20 +35,25 @@ class Landing extends Component {
 			ETH_BALANCE: 0,
 			BTC_USD: 0,
 			ETH_USD: 0,
-			BTC_TRANSACTIONS: [],
+			TRANSACTIONS: [],
 			ETH_TRANSACTIONS: [],
+			BTC_TRANSACTIONS: [],
+			GRAPH_DATA: {
+				DATA: [],
+				SERIES: [],
+			},
 		};
 	}
 	update = () => {
 		BTC_EXCHANGE().then(response => {
-			console.log('Exchange rate : ' + response);
+			console.log('BTC Exchange Rate: ' + response);
 			this.setState({
 				BTC_EXCHANGE: response,
 			});
 		});
 
 		ETH_EXCHANGE().then(response => {
-			console.log('ETH Exchange rate : ' + response);
+			console.log('ETH Exchange Rate: ' + response);
 			this.setState({
 				ETH_EXCHANGE: response,
 			});
@@ -58,13 +63,34 @@ class Landing extends Component {
 			for (let i = 0; i < this.state.BTC.length; i++) {
 				GET_BTC(this.state.BTC[i])
 					.then(response => {
-						console.log('BTC Balance : ' + response);
-						console.log(response.transactions);
+						let all_transactions = this.state.TRANSACTIONS;
 
-						this.setState({
-							BTC_BALANCE: response.balance,
-							BTC_TRANSACTIONS: response.transactions,
-						});
+						if (
+							response.transactions.length >
+							this.state.BTC_TRANSACTIONS
+						) {
+							for (
+								let i = 0;
+								i < response.transactions.length;
+								i++
+							) {
+								all_transactions.push(response.transactions[i]);
+							}
+							this.setState(
+								{
+									BTC_BALANCE: response.balance,
+									TRANACTIONS: all_transactions,
+									BTC_TRANSACTIONS: response.transactions,
+								},
+								() => {
+									let temp = this.state.TRANSACTIONS;
+									temp.sort((a, b) =>
+										a.time > b.time ? -1 : 1
+									);
+									this.populate_graph();
+								}
+							);
+						}
 					})
 					.catch(error => {
 						console.log('Error Fetching BTC Balance');
@@ -77,12 +103,33 @@ class Landing extends Component {
 			for (let i = 0; i < this.state.BTC.length; i++) {
 				GET_ETH(this.state.ETH[i])
 					.then(response => {
-						console.log('ETH Balance : ' + response);
-						console.log(response.transactions);
-						this.setState({
-							ETH_BALANCE: response.balance,
-							ETH_TRANSACTIONS: response.transactions,
-						});
+						let all_transactions = this.state.TRANSACTIONS;
+
+						if (
+							response.transactions.length >
+							this.state.ETH_TRANSACTIONS
+						) {
+							for (
+								let i = 0;
+								i < response.transactions.length;
+								i++
+							) {
+								all_transactions.push(response.transactions[i]);
+							}
+							this.setState(
+								{
+									ETH_BALANCE: response.balance,
+									TRANACTIONS: all_transactions,
+									ETH_TRANSACTIONS: response.transactions,
+								},
+								() => {
+									let temp = this.state.TRANSACTIONS;
+									temp.sort((a, b) =>
+										a.time > b.time ? -1 : 1
+									);
+								}
+							);
+						}
 					})
 					.catch(error => {
 						console.log('Error Fetching ETH Balance');
@@ -122,6 +169,33 @@ class Landing extends Component {
 
 	componentWillUnmount() {
 		clearInterval(this.refresh);
+	}
+
+	populate_graph() {
+		// No idea what I'm doing here
+		const firstDate = new Date(2019, 6, 1);
+		const secondDate = Date(Date.now());
+
+		console.log('First: ' + firstDate);
+		console.log('Second: ' + secondDate);
+		if (this.state.TRANSACTIONS.length > 0) {
+			console.log('Loop through tranactions');
+			for (let i = 0; i < this.state.TRANSACTIONS.length; i++) {
+				console.log(new Date(this.state.TRANSACTIONS[i].time));
+			}
+
+			let now = new Date();
+			let balance = 0;
+			for (
+				var d = new Date(2012, 0, 1);
+				d <= now;
+				d.setDate(d.getDate() + 1)
+			) {
+				console.log(new Date(d));
+
+				// daysOfYear.push(new Date(d));
+			}
+		}
 	}
 
 	render() {
