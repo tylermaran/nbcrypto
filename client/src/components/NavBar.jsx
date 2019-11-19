@@ -7,8 +7,6 @@ import './NavBar.css';
 
 class NavBar extends Component {
 	componentDidMount() {
-		console.log(this.props.page);
-
 		switch (this.props.page) {
 			case 'Dashboard':
 				document.getElementById('Dashboard').classList.add('underline');
@@ -17,7 +15,9 @@ class NavBar extends Component {
 				document.getElementById('Address').classList.add('underline');
 				break;
 			case 'Transactions':
-				document.getElementById('Transactions').classList.add('underline');
+				document
+					.getElementById('Transactions')
+					.classList.add('underline');
 				break;
 			default:
 				break;

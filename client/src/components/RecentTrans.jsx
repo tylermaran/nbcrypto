@@ -14,6 +14,8 @@ class Transactions extends Component {
 	}
 
 	map_transactions = transactions => {
+		let BTC_EXCHANGE = this.props.BTC_EXCHANGE;
+		let ETH_EXCHANGE = this.props.ETH_EXCHANGE;
 		// let date = new Date(transactions.time);
 		// let formatted_date =
 		// 	date.getMonth() +
@@ -26,7 +28,23 @@ class Transactions extends Component {
 		// 	':' +
 		// 	date.getMinutes();
 
-		// console.log(date);
+		let formatted_date = transactions.time
+			.substring(0, transactions.time.length - 1)
+			.split('T')
+			.join(' : ');
+
+		let USD = 0;
+		switch (transactions.coin) {
+			case 'BTC':
+				USD = (transactions.value * BTC_EXCHANGE).toFixed(2);
+				break;
+			case 'ETH':
+				USD = (transactions.value * ETH_EXCHANGE).toFixed(2);
+				break;
+
+			default:
+				break;
+		}
 		return (
 			<div className="transaction_div" key={transactions.tx_hash}>
 				<div className="account_number">{transactions.address}</div>
@@ -35,25 +53,34 @@ class Transactions extends Component {
 					{' '}
 					{transactions.value.toFixed(6)}
 				</div>
-				<div className="transaction_time">{transactions.time}</div>
-				<div className="transaction_usd"> $</div>
+				<div className="transaction_time">{formatted_date}</div>
+				<div className="transaction_usd"> $ {USD}</div>
 			</div>
 		);
 	};
 
-	componentDidMount() {
-		let temp = this.props.transactions.map(this.map_transactions);
-		this.setState({
-			TransDiv: temp,
-		});
-	}
-
-	componentDidUpdate(prevProps) {
-		if (this.props.transactions !== prevProps.transactions) {
-			let temp = this.props.transactions.map(this.map_transactions);
+	update_transactions = (transactions, recent) => {
+		if (recent === true) {
+			let short_list = transactions.slice(0, 9);
+			let temp = short_list.map(this.map_transactions);
 			this.setState({
 				TransDiv: temp,
 			});
+		} else {
+			let temp = transactions.map(this.map_transactions);
+			this.setState({
+				TransDiv: temp,
+			});
+		}
+	};
+
+	componentDidUpdate(prevProps) {
+		if (this.props.transactions !== prevProps.transactions) {
+			console.log(this.props);
+			this.update_transactions(
+				this.props.transactions,
+				this.props.recent
+			);
 		}
 	}
 

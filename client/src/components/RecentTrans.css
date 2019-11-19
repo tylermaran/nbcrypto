@@ -29,7 +29,12 @@
 .transaction_usd {
 	display: inline-block;
 	width: 50%;
-	text-align: right;
+    text-align: right;
+    color: green;
+}
+.transaction_usd {
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .view_all {

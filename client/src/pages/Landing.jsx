@@ -42,13 +42,7 @@ class Landing extends Component {
 			BTC_USD: 0,
 			ETH_USD: 0,
 			BTC_TRANSACTIONS: [],
-			TRANSACTIONS: [
-				{
-					coin: 'ETH',
-					value: 0.025,
-					date: '11/19/2019',
-				},
-			],
+			ETH_TRANSACTIONS: [],
 		};
 	}
 	update = () => {
@@ -66,23 +60,53 @@ class Landing extends Component {
 			});
 		});
 
-		for (let i = 0; i < this.state.BTC.length; i++) {
-			GET_BTC(this.state.BTC_URL, this.state.BTC[i]).then(response => {
-				console.log('BTC Balance : ' + response);
-				console.log(response.transactions)
-				this.setState({
-					BTC_BALANCE: response.balance,
-					BTC_TRANSACTIONS: response.transactions
-				});
-			});
+		if (this.state.BTC.length > 0) {
+			for (let i = 0; i < this.state.BTC.length; i++) {
+				GET_BTC(this.state.BTC_URL, this.state.BTC[i])
+					.then(response => {
+						console.log('BTC Balance : ' + response);
+						console.log(response.transactions);
+
+						// let all_transactions = this.state.TRANACTIONS;
+
+						// all_tranactions.push
+
+						this.setState({
+							BTC_BALANCE: response.balance,
+							BTC_TRANSACTIONS: response.transactions,
+						});
+					})
+					.catch(error => {
+						console.log('Error Fetching BTC Balance');
+						console.log(error);
+					});
+			}
 		}
 
-		GET_ETH(this.state.ETH_URL, this.state.ETH).then(response => {
-			console.log('ETH Balance : ' + response);
-			this.setState({
-				ETH_BALANCE: response,
-			});
-		});
+		if (this.state.ETH.length > 0) {
+			for (let i = 0; i < this.state.BTC.length; i++) {
+				GET_ETH(this.state.ETH_URL, this.state.ETH[i])
+					.then(response => {
+						console.log('ETH Balance : ' + response);
+						console.log(response.transactions);
+						this.setState({
+							ETH_BALANCE: response.balance,
+							ETH_TRANSACTIONS: response.transactions,
+						});
+					})
+					.catch(error => {
+						console.log('Error Fetching ETH Balance');
+						console.log(error);
+					});
+			}
+		}
+
+		// GET_ETH(this.state.ETH_URL, this.state.ETH).then(response => {
+		// 	console.log('ETH Balance : ' + response);
+		// 	this.setState({
+		// 		ETH_BALANCE: response,
+		// 	});
+		// });
 	};
 
 	// Update the balance every minute
@@ -180,7 +204,12 @@ class Landing extends Component {
 							</div>
 						</div>
 					</div>
-					<RecentTrans transactions={this.state.BTC_TRANSACTIONS} />
+					<RecentTrans
+						transactions={this.state.BTC_TRANSACTIONS}
+						recent={true}
+						BTC_EXCHANGE={this.state.BTC_EXCHANGE}
+						ETH_EXCHANGE={this.state.ETH_EXCHANGE}
+					/>
 					<About />
 				</div>
 			</div>

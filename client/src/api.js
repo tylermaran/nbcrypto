@@ -50,8 +50,8 @@ const GET_BTC = (url, address) => {
 			time: txrefs.confirmed,
 		};
 	};
-	
-	return fetch('https://cors-anywhere.herokuapp.com/' + url + address, {
+
+	return fetch(url + address, {
 		mode: 'cors', // no-cors, *cors, same-origin
 	})
 		.then(response => {
@@ -76,6 +76,18 @@ const GET_BTC = (url, address) => {
 
 // GET ETH
 const GET_ETH = (url, address) => {
+	const MAP_ETH = txrefs => {
+		let value = parseFloat(txrefs.value) / 1000000000000000000;
+
+		return {
+			coin: 'BTC',
+			tx_hash: txrefs.tx_hash,
+			address: address,
+			value: value,
+			time: txrefs.confirmed,
+		};
+	};
+	
 	return fetch(url + address, {
 		mode: 'cors', // no-cors, *cors, same-origin
 	})
@@ -83,7 +95,14 @@ const GET_ETH = (url, address) => {
 			return response.json();
 		})
 		.then(data => {
-			let result = parseFloat(data.final_balance) / 1000000000000000000;
+			console.log(data);
+			let transactions = data.txrefs.map(MAP_ETH);
+			let balance = parseFloat(data.final_balance) / 1000000000000000000;
+			let result = {
+				transactions: transactions,
+				balance: balance,
+			};
+
 			return result;
 		})
 		.catch(err => {
@@ -91,6 +110,5 @@ const GET_ETH = (url, address) => {
 			console.log(err);
 		});
 };
-
 
 export { BTC_EXCHANGE, ETH_EXCHANGE, GET_BTC, GET_ETH };
