@@ -8,7 +8,7 @@ class LineGraph extends Component {
     
 	chartRef = React.createRef();
 
-	componentDidMount() {
+	componentDidUpdate() {
         console.log(this.props)
 		const myChartRef = this.chartRef.current.getContext('2d');
 		Chart.defaults.global.elements.line.tension = 0;
@@ -17,11 +17,11 @@ class LineGraph extends Component {
 			type: 'line',
 			data: {
 				//Bring in data
-				labels: ['1', '2', '3', '4', '5', '6', '7', '8'],
+				labels: this.props.data.SERIES,
 				datasets: [
 					{
-						label: 'ETH',
-                        data: this.props.data,
+						label: 'TOTAL',
+                        data: this.props.data.DATA,
                         borderColor: "#98B9AB"
 
 					},
