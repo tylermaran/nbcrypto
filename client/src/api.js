@@ -1,8 +1,12 @@
+const BTC_URL = 'https://api.blockcypher.com/v1/btc/main/addrs/';
+const ETH_URL = 'https://api.blockcypher.com/v1/eth/main/addrs/';
+const BTC_EXCHANGE_URL = 'https://api.coindesk.com/v1/bpi/currentprice.json';
+const ETH_EXCHANGE_URL = 'https://api.etherscan.io/api?module=stats&action=ethprice';
+
 // BTC Exchange
-const BTC_EXCHANGE = url => {
-	console.log('Get BTC Exchange Rate');
+const BTC_EXCHANGE = () => {
 	// BTC Exchange Rate
-	return fetch(url, {
+	return fetch(BTC_EXCHANGE_URL, {
 		mode: 'cors', // no-cors, *cors, same-origin
 	})
 		.then(response => {
@@ -19,9 +23,9 @@ const BTC_EXCHANGE = url => {
 };
 
 // ETH Exchange
-const ETH_EXCHANGE = url => {
+const ETH_EXCHANGE = () => {
 	// ETH Exchange Rate
-	return fetch(url, {
+	return fetch(ETH_EXCHANGE_URL, {
 		mode: 'cors', // no-cors, *cors, same-origin
 	})
 		.then(response => {
@@ -38,7 +42,7 @@ const ETH_EXCHANGE = url => {
 };
 
 // GET BTC
-const GET_BTC = (url, address) => {
+const GET_BTC = (address) => {
 	const MAP_BTC = txrefs => {
 		let value = parseFloat(txrefs.value) / 100000000;
 
@@ -51,14 +55,13 @@ const GET_BTC = (url, address) => {
 		};
 	};
 
-	return fetch(url + address, {
+	return fetch(BTC_URL + address, {
 		mode: 'cors', // no-cors, *cors, same-origin
 	})
 		.then(response => {
 			return response.json();
 		})
 		.then(data => {
-			console.log(data);
 			let transactions = data.txrefs.map(MAP_BTC);
 			let balance = parseFloat(data.final_balance) / 100000000;
 			let result = {
@@ -75,27 +78,26 @@ const GET_BTC = (url, address) => {
 };
 
 // GET ETH
-const GET_ETH = (url, address) => {
+const GET_ETH = (address) => {
 	const MAP_ETH = txrefs => {
 		let value = parseFloat(txrefs.value) / 1000000000000000000;
 
 		return {
-			coin: 'BTC',
+			coin: 'ETH',
 			tx_hash: txrefs.tx_hash,
 			address: address,
 			value: value,
 			time: txrefs.confirmed,
 		};
 	};
-	
-	return fetch(url + address, {
+
+	return fetch(ETH_URL + address, {
 		mode: 'cors', // no-cors, *cors, same-origin
 	})
 		.then(response => {
 			return response.json();
 		})
 		.then(data => {
-			console.log(data);
 			let transactions = data.txrefs.map(MAP_ETH);
 			let balance = parseFloat(data.final_balance) / 1000000000000000000;
 			let result = {

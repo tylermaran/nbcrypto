@@ -29,12 +29,6 @@ class Landing extends Component {
 		this.state = {
 			BTC: [],
 			ETH: [],
-			BTC_URL: 'https://api.blockcypher.com/v1/btc/main/addrs/',
-			ETH_URL: 'https://api.blockcypher.com/v1/eth/main/addrs/',
-			BTC_EXCHANGE_URL:
-				'https://api.coindesk.com/v1/bpi/currentprice.json',
-			ETH_EXCHANGE_URL:
-				'https://api.etherscan.io/api?module=stats&action=ethprice',
 			BTC_EXCHANGE: 0,
 			ETH_EXCHANGE: 0,
 			BTC_BALANCE: 0,
@@ -46,14 +40,14 @@ class Landing extends Component {
 		};
 	}
 	update = () => {
-		BTC_EXCHANGE(this.state.BTC_EXCHANGE_URL).then(response => {
+		BTC_EXCHANGE().then(response => {
 			console.log('Exchange rate : ' + response);
 			this.setState({
 				BTC_EXCHANGE: response,
 			});
 		});
 
-		ETH_EXCHANGE(this.state.ETH_EXCHANGE_URL).then(response => {
+		ETH_EXCHANGE().then(response => {
 			console.log('ETH Exchange rate : ' + response);
 			this.setState({
 				ETH_EXCHANGE: response,
@@ -62,14 +56,10 @@ class Landing extends Component {
 
 		if (this.state.BTC.length > 0) {
 			for (let i = 0; i < this.state.BTC.length; i++) {
-				GET_BTC(this.state.BTC_URL, this.state.BTC[i])
+				GET_BTC(this.state.BTC[i])
 					.then(response => {
 						console.log('BTC Balance : ' + response);
 						console.log(response.transactions);
-
-						// let all_transactions = this.state.TRANACTIONS;
-
-						// all_tranactions.push
 
 						this.setState({
 							BTC_BALANCE: response.balance,
@@ -85,7 +75,7 @@ class Landing extends Component {
 
 		if (this.state.ETH.length > 0) {
 			for (let i = 0; i < this.state.BTC.length; i++) {
-				GET_ETH(this.state.ETH_URL, this.state.ETH[i])
+				GET_ETH(this.state.ETH[i])
 					.then(response => {
 						console.log('ETH Balance : ' + response);
 						console.log(response.transactions);
@@ -100,13 +90,6 @@ class Landing extends Component {
 					});
 			}
 		}
-
-		// GET_ETH(this.state.ETH_URL, this.state.ETH).then(response => {
-		// 	console.log('ETH Balance : ' + response);
-		// 	this.setState({
-		// 		ETH_BALANCE: response,
-		// 	});
-		// });
 	};
 
 	// Update the balance every minute

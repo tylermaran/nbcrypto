@@ -74,9 +74,12 @@ class Transactions extends Component {
 		}
 	};
 
+	componentDidMount(prevProps) {
+		this.update_transactions(this.props.transactions, this.props.recent);
+	}
+
 	componentDidUpdate(prevProps) {
-		if (this.props.transactions !== prevProps.transactions) {
-			console.log(this.props);
+		if (this.props !== prevProps) {
 			this.update_transactions(
 				this.props.transactions,
 				this.props.recent
@@ -85,13 +88,17 @@ class Transactions extends Component {
 	}
 
 	render() {
+		let view_all = (
+			<div className="view_all">
+				<Link to="/transactions">View all transactions</Link>
+			</div>
+		);
+
 		return (
 			<div className="RecentTrans">
 				<div className="sub_title">Recent Transactions:</div>
 				{this.state.TransDiv}
-				<div className="view_all">
-					<Link to="/transactions">View all transactions</Link>
-				</div>
+				{this.props.recent ? view_all : <></>}
 			</div>
 		);
 	}
