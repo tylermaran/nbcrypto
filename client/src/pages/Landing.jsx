@@ -191,7 +191,7 @@ class Landing extends Component {
             <div className="landing">
                 <div className="grid">
                     <NavBar page="Dashboard" />
-                    <h1 className="main_title">NoiseBridge Crypto</h1>
+                    <h1 className="main_title">NoiseBridge Crypto Wallet</h1>
 
                     <div className="graph">
                         <div className="sub_title">Overview:</div>
